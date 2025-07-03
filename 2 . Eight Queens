@@ -1,0 +1,11 @@
+def main():
+  def solve(r, cols, diag1, diag2, board):
+    if r == 8:
+      for row in board: print(row)
+      return True
+    for c in range(8):
+      if c in cols or r+c in diag1 or r-c in diag2: continue
+      if solve(r+1, cols|{c}, diag1|{r+c}, diag2|{r-c}, board+['.'*c + 'Q' + '.'*(7-c)]): return True
+  solve(0, set(), set(), set(), [])
+
+main()
