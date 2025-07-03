@@ -1,0 +1,15 @@
+def main():
+ w1,w2,res="SEND","MORE","MONEY"
+ L=sorted(set(w1+w2+res))
+ if len(L)>10:return
+ def val(w,d):return int(''.join(str(d[c])for c in w))
+ def perm(a,k):
+  if k==len(L):
+   d=dict(zip(L,a))
+   if d[w1[0]]*d[w2[0]]*d[res[0]]==0:return
+   if val(w1,d)+val(w2,d)==val(res,d):print(val(w1,d),"+",val(w2,d),"=",val(res,d));exit()
+   return
+  for i in range(k,10):
+   a[k],a[i]=a[i],a[k];perm(a,k+1);a[k],a[i]=a[i],a[k]
+ perm([0,1,2,3,4,5,6,7,8,9],0)
+main()
