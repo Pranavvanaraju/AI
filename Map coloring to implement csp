@@ -1,0 +1,14 @@
+def main():
+ R,C,A = ['WA','NT','SA','Q','NSW','V','T'], ['R','G','B'], {}
+ N = {'WA':['NT','SA'],'NT':['WA','SA','Q'],'SA':['WA','NT','Q','NSW','V'],
+      'Q':['NT','SA','NSW'],'NSW':['Q','SA','V'],'V':['SA','NSW'],'T':[]}
+ def solve(i):
+  if i==len(R): return True
+  for c in C:
+   if all(A.get(n)!=c for n in N[R[i]]):
+    A[R[i]]=c
+    if solve(i+1): return True
+    del A[R[i]]
+ solve(0)
+ print(A)
+main()
