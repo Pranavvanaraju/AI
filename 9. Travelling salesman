@@ -1,0 +1,17 @@
+def main():
+ d=[[0,10,15,20],[10,0,35,25],[15,35,0,30],[20,25,30,0]]
+ n=len(d)
+ best,path=1e9,[]
+ def perm(a,k):
+  nonlocal best,path
+  if k==len(a):
+   c=d[0][a[0]]+sum(d[a[i]][a[i+1]]for i in range(n-2))+d[a[-1]][0]
+   if c<best:best=c;path=a[:]
+  else:
+   for i in range(k,n-1):
+    a[k],a[i]=a[i],a[k]
+    perm(a,k+1)
+    a[k],a[i]=a[i],a[k]
+ perm([1,2,3],0)
+ print("Path:",(0,*path,0),"Cost:",best)
+main()
