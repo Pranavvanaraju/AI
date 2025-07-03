@@ -1,0 +1,19 @@
+def main():
+ a,b,capA,capB,goal,seen = 0,0,4,3,2,set()
+ q=[(a,b,[])]
+ while q:
+  a,b,path = q.pop(0)
+  if (a,b) in seen: continue
+  seen.add((a,b))
+  path = path + [(a,b)]
+  if a==goal or b==goal:
+   for x,y in path: print(f"A:{x} B:{y}")
+   return
+  q += [
+   (capA,b,path), (a,capB,path),        # fill jugs
+   (0,b,path), (a,0,path),              # empty jugs
+   (a - min(a, capB - b), b + min(a, capB - b), path),  # A → B
+   (a + min(b, capA - a), b - min(b, capA - a), path)   # B → A
+  ]
+
+main()
