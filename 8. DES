@@ -1,0 +1,6 @@
+def main():
+ m = '10101010'*8
+ k = '01101100'*8
+ c = ''.join('0' if a==b else '1' for a,b in zip(m,k))
+ print("Encrypted:", c)
+main()
