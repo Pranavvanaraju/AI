@@ -1,0 +1,10 @@
+def main():
+ loc, A, B = 'A', 'Dirty', 'Dirty'
+ while A == 'Dirty' or B == 'Dirty':
+  if loc == 'A':
+   if A == 'Dirty': print("Clean A"); A = 'Clean'
+   else: loc = 'B'; print("Move to B")
+  else:
+   if B == 'Dirty': print("Clean B"); B = 'Clean'
+   else: loc = 'A'; print("Move to A")
+main()
