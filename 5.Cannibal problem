@@ -1,0 +1,15 @@
+def main():
+ q=[((3,3,1),[])];v=set()
+ while q:
+  s,p=q.pop(0)
+  if s[:2]==(0,0):[print(x)for x in p+[s]];return
+  if s in v:continue
+  v.add(s)
+  for m,c in [(1,0),(2,0),(0,1),(0,2),(1,1)]:
+   ml,cl,b=s
+   d=1 if b else -1
+   nm,nc=ml-d*m,cl-d*c
+   if 0<=nm<=3 and 0<=nc<=3:
+    if (nm==0 or nm>=nc)and(3-nm==0 or 3-nm>=3-nc):
+     q+=[((nm,nc,1-b),p+[s])]
+main()
