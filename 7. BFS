@@ -1,0 +1,10 @@
+def main():
+ g = {1:[2,3],2:[4],3:[4],4:[]}
+ q, v = [1], set()
+ while q:
+  n = q.pop(0)
+  if n in v: continue
+  print(n)
+  v.add(n)
+  q += [x for x in g[n] if x not in v]
+main()
