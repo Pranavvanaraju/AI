@@ -1,0 +1,9 @@
+def main():
+ g={'A':{'B':1,'C':3},'B':{'D':3},'C':{'D':1},'D':{}}
+ h={'A':4,'B':2,'C':2,'D':0}
+ q=[(h['A'],'A',0,[])]
+ while q:
+  q.sort();f,n,gc,p=q.pop(0)
+  if n=='D':print(p+[n],gc);return
+  for x in g[n]: q+=[(gc+g[n][x]+h[x],x,gc+g[n][x],p+[n])]
+main()
