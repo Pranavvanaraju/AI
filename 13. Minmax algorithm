@@ -1,0 +1,16 @@
+def minimax(depth, is_max, scores, index):
+    if depth == 2:  # leaf nodes
+        return scores[index]
+    if is_max:
+        return max(minimax(depth+1, False, scores, index*2),
+                   minimax(depth+1, False, scores, index*2+1))
+    else:
+        return min(minimax(depth+1, True, scores, index*2),
+                   minimax(depth+1, True, scores, index*2+1))
+
+def main():
+    scores = [3, 5, 2, 9, 12, 5, 23, 23]  # example leaf values
+    best = minimax(0, True, scores, 0)
+    print("Best value for maximizer:", best)
+
+main()
