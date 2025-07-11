@@ -1,0 +1,16 @@
+% Facts: Fruit and its corresponding color 
+fruit_color(apple, red). 
+fruit_color(banana, yellow). 
+fruit_color(grape, purple). 
+fruit_color(orange, orange). 
+fruit_color(lemon, yellow). 
+fruit_color(blueberry, blue). 
+fruit_color(strawberry, red). 
+fruit_color(kiwi, green). 
+
+% Query Examples: 
+% Find all fruits with a specific color 
+% ?- fruit_color(Fruit, red). 
+
+% Find the color of a specific fruit 
+% ?- fruit_color(apple, Color). 
