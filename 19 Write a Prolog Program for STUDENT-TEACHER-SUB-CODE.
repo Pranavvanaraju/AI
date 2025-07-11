@@ -1,0 +1,10 @@
+teaches(mr_smith, math, 101). 
+teaches(ms_jones, physics, 102). 
+student(john, math, 101). 
+student(alice, physics, 102). 
+find_teacher(Student, Teacher) :- 
+    student(Student, Subject, Code), 
+    teaches(Teacher, Subject, Code). 
+
+
+#find_teacher(john, Teacher).  
