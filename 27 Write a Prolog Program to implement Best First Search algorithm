@@ -1,0 +1,46 @@
+% Define the graph with heuristic values 
+edge(a, b, 4). 
+edge(a, c, 3). 
+edge(b, d, 5). 
+edge(b, e, 12). 
+edge(c, f, 10). 
+edge(c, g, 8). 
+edge(e, h, 7). 
+edge(f, i, 6). 
+edge(g, j, 9). 
+
+% Define heuristic values for nodes 
+heuristic(a, 7). 
+heuristic(b, 6). 
+heuristic(c, 4). 
+heuristic(d, 5). 
+heuristic(e, 3). 
+heuristic(f, 2). 
+heuristic(g, 6). 
+heuristic(h, 5). 
+heuristic(i, 1). 
+heuristic(j, 4). 
+
+% Best First Search Algorithm 
+best_first_search(Start, Goal, Path) :-   
+    best_first([[Start]], Goal, Path). 
+
+best_first([[Goal | Path] | _], Goal, [Goal | Path]). 
+best_first([CurrentPath | OtherPaths], Goal, Solution) :- 
+    CurrentPath = [CurrentNode | _], 
+    findall([Next, CurrentNode | CurrentPath],  
+        (edge(CurrentNode, Next, _), \+ member(Next, CurrentPath)),  
+        NewPaths), 
+    sort_by_heuristic(NewPaths, SortedPaths), 
+    append(SortedPaths, OtherPaths, UpdatedQueue), 
+    best_first(UpdatedQueue, Goal, Solution). 
+
+% Sorting paths based on heuristic values 
+sort_by_heuristic(Paths, SortedPaths) :- 
+    map_list_to_pairs(evaluate_path, Paths, Paired), 
+    keysort(Paired, SortedPaired), 
+    pairs_values(SortedPaired, SortedPaths). 
+
+evaluate_path([Node | _], H) :- 
+    heuristic(Node, H). 
+#best_first_search_ordered(a, i, Path).
