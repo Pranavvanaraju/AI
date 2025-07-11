@@ -1,0 +1,8 @@
+planet(mercury, terrestrial, 57). 
+planet(venus, terrestrial, 108). 
+planet(uranus, ice_giant, 2871). 
+planet(neptune, ice_giant, 4495). 
+find_planet_info(Name, Type, Distance) :- planet(Name, Type, Distance). 
+
+
+#find_planet_info(mercury, Type, Distance). 
