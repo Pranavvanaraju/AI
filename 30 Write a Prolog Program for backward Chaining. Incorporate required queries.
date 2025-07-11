@@ -1,0 +1,7 @@
+% Rules for backward reasoning 
+can_go_out :- weather_is_good. 
+weather_is_good :- sun_is_shining. 
+sun_is_shining. 
+
+% Backward chaining query 
+?- can_go_out. 
