@@ -1,0 +1,9 @@
+% Facts 
+fact(sun_is_shining). 
+fact(weather_is_good) :- fact(sun_is_shining). 
+fact(go_for_walk) :- fact(weather_is_good). 
+
+% Forward chaining rule 
+forward :- 
+    fact(go_for_walk), 
+    write('You can go for a walk!'), nl.
