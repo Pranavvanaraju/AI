@@ -1,0 +1,14 @@
+% Symptoms and diagnosis rules 
+symptom(john, fever). 
+symptom(john, cough). 
+symptom(john, sore_throat). 
+
+disease(john, flu) :- 
+    symptom(john, fever), 
+    symptom(john, cough), 
+    symptom(john, sore_throat). 
+
+diagnose(Patient) :- 
+    disease(Patient, Disease), 
+    format('~w is diagnosed with ~w.~n', [Patient, Disease]). 
+input - diagnose(john).
