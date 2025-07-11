@@ -1,0 +1,22 @@
+class Node: 
+    def _init_(self, question=None, left=None, right=None, label=None): 
+        self.question = question   
+        self.left = left   
+        self.right = right   
+        self.label = label   
+
+def build_tree(): 
+    return Node("Is it raining?",  
+                Node("Do you have an umbrella?",  
+                     Node(label="Go outside"),   
+                     Node(label="Stay inside")),   
+                Node(label="Go outside"))   
+
+def classify(node): 
+    while node.label is None: 
+        ans = input(node.question + " (yes/no): ").strip().lower() 
+        node = node.left if ans == "yes" else node.right 
+    return node.label 
+
+tree = build_tree() 
+print("Decision:", classify(tree)) 
