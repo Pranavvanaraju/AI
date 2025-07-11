@@ -1,0 +1,21 @@
+% Initial state: (MonkeyPos, ChairPos, HasBanana) 
+state(at_door, on_floor, no). 
+state(at_window, on_floor, no). 
+state(at_banana, on_floor, no). 
+state(at_banana, on_chair, yes).  % Goal state 
+
+% Actions 
+move(state(M, on_floor, no), walk(M, NewM), state(NewM, on_floor, no)). 
+move(state(M, on_floor, no), push_chair(M, NewM), state(NewM, on_floor, no)). 
+move(state(M, on_floor, no), climb_chair, state(M, on_chair, no)). 
+move(state(M, on_chair, no), grab_banana, state(M, on_chair, yes)). 
+
+% Solve the problem 
+solve(State, []) :- State = state(_, _, yes).  % Goal state 
+solve(State, [Action | Actions]) :- 
+    move(State, Action, NewState), 
+    solve(NewState, Actions). 
+
+% Example Query: 
+% ?- solve(state(at_door, on_floor, no), Actions). 
+% Output: Actions = [walk(at_door, at_banana), climb_chair, grab_banana]. 
