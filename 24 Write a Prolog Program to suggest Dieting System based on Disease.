@@ -1,0 +1,13 @@
+% Facts: disease and corresponding diet 
+diet(diabetes, 'Low sugar, High fiber diet'). 
+diet(hypertension, 'Low salt, Low fat diet'). 
+diet(obesity, 'High protein, Low carb diet'). 
+diet(anemia, 'Iron-rich diet with leafy greens'). 
+diet(ulcer, 'Bland diet, avoid spicy food'). 
+
+% Rule to suggest diet 
+suggest_diet(Disease) :- 
+    diet(Disease, Diet), 
+    format('Suggested diet for ~w: ~w~n', [Disease, Diet]). 
+
+#suggest_diet(diabetes). 
