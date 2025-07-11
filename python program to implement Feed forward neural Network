@@ -1,0 +1,29 @@
+import random, math 
+
+def sigmoid(x): return 1 / (1 + math.exp(-x)) 
+def d_sigmoid(x): return x * (1 - x) 
+
+def init(n, h, o): 
+    return [[random.uniform(-1, 1) for _ in range(h)] for _ in range(n)], [[random.uniform(-1, 1) for _ in range(o)] for _ in range(h)], [random.uniform(-1, 1) for _ in range(h)], [random.uniform(-1, 1) for _ in range(o)] 
+
+def forward(inp, w1, w2, b1, b2): 
+    h = [sigmoid(sum(i * w + b for i, w, b in zip(inp, ws, b1))) for ws in zip(*w1)] 
+    o = [sigmoid(sum(h[i] * w + b for i, w, b in zip(range(len(h)), ws, b2))) for ws in zip(*w2)] 
+    return h, o 
+
+def train(data, tar, e=1000, lr=0.5): 
+    w1, w2, b1, b2 = init(len(data[0]), 2, len(tar[0])) 
+    for _ in range(e): 
+        for i, inp in enumerate(data): 
+            h, o = forward(inp, w1, w2, b1, b2) 
+            d_o = [(tar[i][j] - o[j]) * d_sigmoid(o[j]) for j in range(len(o))] 
+            d_h = [sum(w2[k][j] * d_o[j] for j in range(len(o))) * d_sigmoid(h[k]) for k in range(len(h))] 
+            for j in range(len(o)): b2[j] += lr * d_o[j] 
+            for k in range(len(h)): b1[k] += lr * d_h[k] 
+            for k in range(len(h)): w2[k] = [w + lr * h[k] * d_o[j] for j, w in enumerate(w2[k])] 
+            for j in range(len(inp)): w1[j] = [w + lr * inp[j] * d_h[k] for k, w in enumerate(w1[j])] 
+    return w1, w2, b1, b2 
+
+X, Y = [[0,0], [0,1], [1,0], [1,1]], [[0], [1], [1], [0]] 
+w1, w2, b1, b2 = train(X, Y) 
+for x in X: print(f"Input: {x}, Output: {forward(x, w1, w2, b1, b2)[1]}") 
