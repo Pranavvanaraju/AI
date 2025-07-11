@@ -1,0 +1,9 @@
+
+NAME, DOB.                                                                                                      
+dob(john, '1995-06-15'). 
+dob(alice, '2000-12-01'). 
+dob(bob, '1988-03-23'). 
+dob(eve, '1992-07-19'). 
+find_dob(Name, DOB) :- dob(Name, DOB). 
+
+#find_dob(john, DOB). 
