@@ -1,0 +1,26 @@
+parent(john, mary). 
+parent(john, mike). 
+parent(susan, mary). 
+parent(susan, mike). 
+parent(mary, alice). 
+parent(mary, bob). 
+parent(mike, charlie). 
+father(X, Y) :- parent(X, Y), male(X). 
+mother(X, Y) :- parent(X, Y), female(X). 
+sibling(X, Y) :- parent(P, X), parent(P, Y), X \= Y. 
+
+grandparent(X, Y) :- parent(X, Z), parent(Z, Y). 
+grandchild(X, Y) :- grandparent(Y, X). 
+ancestor(X, Y) :- parent(X, Y). 
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y). 
+male(john). 
+male(mike). 
+male(bob). 
+male(charlie). 
+female(susan). 
+female(mary). 
+female(alice). 
+
+
+#sibling(mary, Sibling). 
+#grandparent(Grandfather, alice), male(Grandfather). 
