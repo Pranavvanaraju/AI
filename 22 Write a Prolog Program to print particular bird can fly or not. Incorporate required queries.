@@ -1,0 +1,9 @@
+can_fly(sparrow). 
+can_fly(eagle). 
+cannot_fly(penguin). 
+cannot_fly(kiwi). 
+bird_flight(Bird, 'can fly') :- can_fly(Bird). 
+bird_flight(Bird, 'cannot fly') :- cannot_fly(Bird). 
+
+
+#bird_flight(sparrow, Result). 
